@@ -1,47 +1,39 @@
 import React, { Component } from 'react';
-import {
-	View,
-	Image,
-	StyleSheet,
-	AppRegistry,
-	ImageBackground,
-	Text
-} from 'react-native';
-
+import { View, AppRegistry, StyleSheet, Text, Image } from 'react-native';
+import { RkCard } from 'react-native-ui-kitten';
 export default class Cover extends Component {
 	render() {
+		const { title, img_url, forward } = this.props.data;
 		return (
-			<View style={styles.container}>
+			<RkCard style={styles.container}>
+				<View rkCardHeader>
+					<Text>
+						{title}
+					</Text>
+				</View>
 				<Image
+					rkCardImg
 					source={{
-						uri: 'http://image.wufazhuce.com/FmQQjOVdFLgBxQzYI0T-H3Uo1fE7',
+						uri: img_url,
 						cache: 'only-if-cached'
 					}}
-					style={{ flex: 1 }}
 				/>
-				<Text style={styles.title}>232131</Text>
-			</View>
+				<View rkCardContent>
+					<Text ellipsizeMode='tail' numberOfLines={2}>
+						{forward}
+					</Text>
+				</View>
+			</RkCard>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-		height: 200,
 		alignSelf: 'stretch',
-		margin: 10,
-		shadowColor: '#666',
-		shadowOffset: {
-			width: 30,
-			height: 20
-		},
-		shadowRadius: 1,
-		shadowOpacity: 0.8,
-		elevation: 1,
+		height: 300,
+		marginTop: 5,
+		marginLeft: 5,
+		marginRight: 5
 	}
-  ,title:{
-    padding:10
-  }
 });
-
-AppRegistry.registerComponent('Cover', () => Cover);
